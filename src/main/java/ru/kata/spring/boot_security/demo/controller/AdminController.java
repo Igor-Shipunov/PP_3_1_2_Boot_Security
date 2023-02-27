@@ -16,7 +16,7 @@ import java.util.List;
 public class AdminController {
 
     private final UserService userService;
-    RoleService roleService;
+    private final RoleService roleService;
 
     @Autowired
     public AdminController(UserService userService, RoleService roleService) {
@@ -33,7 +33,7 @@ public class AdminController {
 
     @PostMapping()
     public String createNewUser(@ModelAttribute("user") User user, @ModelAttribute("roles") List<Role> roles) {
-        userService.createNewUser(user);
+        userService.saveNewUser(user);
         roleService.saveUserRoles(roles);
         return "redirect:/admin";
     }
